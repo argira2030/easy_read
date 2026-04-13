@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Attention Protocol – Easy Read</title>
+<style>
+/* Mismo estilo simplificado que en el mensaje anterior */
+:root {
+  --bg: #f5f0e8;
+  --bg2: #ede8de;
+  --ink: #1a1714;
+  --ink2: #2c3e50;
+  --muted: #5a5a5a;
+  --accent: #c0392b;
+  --accent2: #2c3e50;
+  --gold: #b8860b;
+  --border: #d5cfc4;
+  --white: #fdfaf5;
+  --font-size-large: 1.2rem;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'DM Sans', sans-serif;
+  font-size: var(--font-size-large);
+  line-height: 1.5;
+  padding: 1rem;
+}
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  background: var(--white);
+  border-radius: 24px;
+  padding: 2rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+h1, h2, h3 {
+  font-family: 'DM Serif Display', serif;
+  font-weight: 400;
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+}
+h1 { font-size: 2.5rem; color: var(--accent); }
+h2 { font-size: 2rem; border-left: 6px solid var(--accent); padding-left: 1rem; }
+p, li { margin-bottom: 1rem; font-size: 1.2rem; }
+.phase {
+  background: var(--bg);
+  padding: 1.5rem;
+  border-radius: 20px;
+  margin: 2rem 0;
+  border: 1px solid var(--border);
+}
+.step {
+  background: white;
+  padding: 1rem;
+  margin: 1rem 0;
+  border-left: 5px solid var(--accent2);
+  border-radius: 12px;
+  cursor: pointer;
+}
+.step.checked { background: #e8f0f5; opacity: 0.8; }
+.step-check { font-weight: bold; display: inline-block; width: 28px; text-align: center; }
+.button, .btn-ghost {
+  display: inline-block;
+  background: var(--accent);
+  color: white;
+  padding: 0.8rem 1.5rem;
+  border-radius: 40px;
+  text-decoration: none;
+  font-weight: bold;
+  margin: 1rem 0.5rem 0 0;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+}
+.button:hover { background: var(--ink); }
+.button-light { background: var(--accent2); }
+.question {
+  background: #fef7e0;
+  padding: 1rem;
+  border-radius: 20px;
+  margin: 1.5rem 0;
+}
+.option {
+  background: white;
+  border: 1px solid var(--border);
+  padding: 0.8rem;
+  margin: 0.5rem 0;
+  border-radius: 40px;
+  cursor: pointer;
+}
+.answer { display: none; background: #f9f2e0; padding: 1rem; margin-top: 1rem; border-left: 5px solid var(--gold); }
+.calendar {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+  margin: 1rem 0;
+}
+.day {
+  background: white;
+  border: 1px solid var(--border);
+  text-align: center;
+  padding: 0.5rem;
+  cursor: pointer;
+  border-radius: 8px;
+}
+.day.completed { background: var(--accent2); color: white; }
+.footer {
+  font-size: 0.8rem;
+  text-align: center;
+  margin-top: 2rem;
+  color: var(--muted);
+  border-top: 1px solid var(--border);
+  padding-top: 1rem;
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <div style="text-align: right; margin-bottom: 1rem;">
+    <a href="index.html" style="font-family: monospace;">🇪🇸 Español</a> | 
+    <a href="facil.html" style="font-family: monospace;">📖 Easy Read ES</a>
+  </div>
+  <h1>📱 Attention Protocol <br> <small style="font-size: 1.2rem;">Easy Read Version</small></h1>
+  <p>This program helps you use your phone with more control. You don't need willpower, just follow these steps.</p>
+
+  <!-- FASE 1 (contenido simplificado) -->
+  <div class="phase">
+    <h2>1. Change your environment</h2>
+    <div class="step" data-step="1.1" onclick="toggleStep(this)"><div><span class="step-check">⬜</span> <strong>Turn your screen to black and white</strong></div><p>Colors catch your attention without you noticing. In black and white, your phone becomes boring.</p></div>
+    <div class="step" data-step="1.2" onclick="toggleStep(this)"><div><span class="step-check">⬜</span> <strong>Turn off notifications that are not from people</strong></div><p>Notifications steal your attention. Keep only calls and direct messages.</p></div>
+    <div class="step" data-step="1.3" onclick="toggleStep(this)"><div><span class="step-check">⬜</span> <strong>Leave your phone outside the room when you work or sleep</strong></div><p>Just seeing your phone tires your brain. Keep it far away.</p></div>
+    <div class="question"><p><strong>❓ Why does seeing your phone tire you even if you don't use it?</strong></p>
+      <div class="option" onclick="showAnswer(this, 'ans1')">Because it makes me anxious</div>
+      <div class="option" onclick="showAnswer(this, 'ans1', true)">Because my brain uses energy to ignore it</div>
+      <div id="ans1" class="answer">✅ Correct. Your brain uses resources to avoid looking at the phone. That's why you feel tired.</div>
+    </div>
+  </div>
+
+  <!-- FASE 2 simplificada -->
+  <div class="phase">
+    <h2>2. Help your brain recover</h2>
+    <div class="step" data-step="2.1" onclick="toggleStep(this)"><div><span class="step-check">⬜</span> <strong>Stop endless scrolling</strong></div><p>Replace short videos with reading a book or walking without music.</p></div>
+    <div class="step" data-step="2.2" onclick="toggleStep(this)"><div><span class="step-check">⬜</span> <strong>Allow yourself to be bored</strong></div><p>Boredom is normal. Don't cover it with your phone. Wait a few minutes.</p></div>
+    <div class="step" data-step="2.3" onclick="toggleStep(this)"><div><span class="step-check">⬜</span> <strong>Look at sunlight as soon as you wake up</strong></div><p>Natural light regulates your sleep and mood. Look out the window for 5 minutes before using your phone.</p></div>
+    <div class="question"><p><strong>❓ What does it mean to feel empty when you stop scrolling?</strong></p>
+      <div class="option" onclick="showAnswer(this, 'ans2')">That I am addicted</div>
+      <div class="option" onclick="showAnswer(this, 'ans2', true)">That my brain is regulating itself</div>
+      <div id="ans2" class="answer">✅ That feeling is good. It means your brain is recovering. It goes away after a few days.</div>
+    </div>
+  </div>
+
+  <!-- FASE 3 -->
+  <div class="phase">
+    <h2>3. The power of pause</h2>
+    <div class="step" data-step="3.1" onclick="toggleStep(this)"><div><span class="step-check">⬜</span> <strong>Step 1: Notice</strong></div><p>Observe that you opened the app without thinking. Don't be angry. Just say: "That was automatic."</p></div>
+    <div class="step" data-step="3.2" onclick="toggleStep(this)"><div><span class="step-check">⬜</span> <strong>Step 2: Wait 5 seconds</strong></div><p>Keep the app open but don't touch anything. Count 5 seconds. This gives your brain time to brake.</p></div>
+    <div class="step" data-step="3.3" onclick="toggleStep(this)"><div><span class="step-check">⬜</span> <strong>Step 3: Decide</strong></div><p>Do you really need to go in or was it just habit? If habit, close the app. If useful, continue.</p></div>
+    <div class="question"><p><strong>❓ Why is feeling guilty bad?</strong></p>
+      <div class="option" onclick="showAnswer(this, 'ans3')">Because guilt is useless</div>
+      <div class="option" onclick="showAnswer(this, 'ans3', true)">Because guilt uses the same energy you need for self-control</div>
+      <div id="ans3" class="answer">✅ Exactly. If you get angry at yourself, you have less energy for next time. Better to observe without judgment.</div>
+    </div>
+  </div>
+
+  <!-- FASE 4 -->
+  <div class="phase">
+    <h2>4. Use your phone as a tool</h2>
+    <div class="step" data-step="4.1" onclick="toggleStep(this)"><div><span class="step-check">⬜</span> <strong>Before touching your phone, say out loud what you will do</strong></div><p>Example: "I'll check the weather and then close it." This activates your conscious brain.</p></div>
+    <div class="step" data-step="4.2" onclick="toggleStep(this)"><div><span class="step-check">⬜</span> <strong>Treat your phone like a hammer</strong></div><p>You pick up a hammer to drive a nail and then put it down. Do the same with your phone.</p></div>
+    <div class="step" data-step="4.3" onclick="toggleStep(this)"><div><span class="step-check">⬜</span> <strong>When you finish, say "completed"</strong></div><p>This small ritual reinforces using your phone with a purpose and then letting it go.</p></div>
+    <div class="question"><p><strong>❓ What is the difference between using the phone as a tool or as a home?</strong></p>
+      <div class="option" onclick="showAnswer(this, 'ans4')">The time you spend</div>
+      <div class="option" onclick="showAnswer(this, 'ans4', true)">The intention when you pick it up</div>
+      <div id="ans4" class="answer">✅ Exactly. If you know what you're going to do, it's a tool. If you go in without a plan, you get trapped.</div>
+    </div>
+  </div>
+
+  <!-- CALENDARIO -->
+  <div class="phase">
+    <h2>📅 30-day calendar</h2>
+    <div class="calendar" id="calendar"></div>
+    <p><strong>Important days:</strong> Day 7: changes start; Day 14: emptiness decreases; Day 30: brain recalibrated.</p>
+    <button class="button button-light" onclick="resetCalendar()">Reset calendar</button>
+  </div>
+
+  <div class="footer">
+    <p>© 2026 Jose Ranero García · CC BY 4.0 · DOI: 10.5281/zenodo.19556754</p>
+    <p>Easy Read version of <a href="https://argira.eus/protocolo-atencion/">Digital Attention Protocol</a></p>
+  </div>
+</div>
+
+<script>
+function toggleStep(stepDiv) {
+  const checkSpan = stepDiv.querySelector('.step-check');
+  if (stepDiv.classList.contains('checked')) {
+    stepDiv.classList.remove('checked');
+    checkSpan.innerHTML = '⬜';
+  } else {
+    stepDiv.classList.add('checked');
+    checkSpan.innerHTML = '✅';
+  }
+  saveSteps();
+}
+function saveSteps() { localStorage.setItem('easyread_steps', JSON.stringify([...document.querySelectorAll('.step')].map(s => s.classList.contains('checked')))); }
+function loadSteps() { const saved = localStorage.getItem('easyread_steps'); if(saved) JSON.parse(saved).forEach((val,i)=>{ if(val) document.querySelectorAll('.step')[i]?.classList.add('checked'); document.querySelectorAll('.step')[i]?.querySelector('.step-check') && val && (document.querySelectorAll('.step')[i].querySelector('.step-check').innerHTML='✅'); }); }
+function showAnswer(button, answerId, isCorrect=false) { const answerDiv = document.getElementById(answerId); button.style.backgroundColor = isCorrect ? '#d4edda' : '#f8d7da'; answerDiv.style.display = 'block'; button.parentElement.querySelectorAll('.option').forEach(btn => btn.style.pointerEvents = 'none'); }
+let completedDays = [];
+function loadDays() { const saved = localStorage.getItem('easyread_days'); completedDays = saved ? JSON.parse(saved) : []; updateCalendar(); }
+function saveDays() { localStorage.setItem('easyread_days', JSON.stringify(completedDays)); }
+function toggleDay(day) { const idx = completedDays.indexOf(day); idx === -1 ? completedDays.push(day) : completedDays.splice(idx,1); saveDays(); updateCalendar(); }
+function updateCalendar() { const grid = document.getElementById('calendar'); grid.innerHTML = ''; for(let i=1;i<=30;i++){ const dayDiv = document.createElement('div'); dayDiv.classList.add('day'); if(completedDays.includes(i)) dayDiv.classList.add('completed'); dayDiv.textContent = i; dayDiv.onclick = (function(d){ return function(){ toggleDay(d); }; })(i); grid.appendChild(dayDiv); } }
+function resetCalendar() { if(confirm('Delete all marked days?')) { completedDays = []; saveDays(); updateCalendar(); } }
+loadSteps(); loadDays();
+</script>
+</body>
+</html>
